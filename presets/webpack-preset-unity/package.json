@@ -1,0 +1,49 @@
+{
+  "name": "webpack-preset-unity",
+  "version": "0.0.1",
+  "description": "Default presets of webpack configs used by Unity",
+  "files": [
+    "README.md",
+    "index.js"
+  ],
+  "main": "index.js",
+  "dependencies": {
+    "lodash-webpack-plugin": "^0.10.2",
+    "postcss-cssnext": "^2.8.0",
+    "webpack": "^1.13.1",
+    "webpack-dashboard": "^0.2.0",
+    "webpack-dev-server": "^1.14.1",
+    "html-webpack-plugin": "^2.22.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "eslint-loader": "^1.6.1",
+    "style-loader": "^0.13.1",
+    "babel-loader": "^6.2.4",
+    "url-loader": "^0.5.7",
+    "postcss-loader": "^1.1.0",
+    "json-loader": "^0.5.4",
+    "file-loader": "^0.9.0",
+    "css-loader": "^0.25.0",
+    "baggage-loader": "^0.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/auru/unity-configs.git"
+  },
+  "keywords": [
+    "config",
+    "webpack",
+    "unity"
+  ],
+  "author": "Anton Konev (antonykonev@yandex.ru)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/auru/unity-configs/issues"
+  },
+  "homepage": "https://github.com/auru/unity-configs#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=4"
+  }
+}
