@@ -1,15 +1,12 @@
 {
   "name": "eslint-config-unity",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Default presets of ESLint configs used by Unity",
   "main": "index.js",
   "files": [
     "README.md",
     "index.js"
   ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "dependencies": {
     "eslint": "^3.8.0",
     "eslint-loader": "^1.6.1",
@@ -26,7 +23,8 @@
   },
   "keywords": [
     "config",
-    "eslint"
+    "eslint",
+    "unity"
   ],
   "author": "Anton Konev (antonykonev@yandex.ru)",
   "license": "MIT",
