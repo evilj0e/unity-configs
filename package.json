@@ -20,7 +20,14 @@
     "url": "https://github.com/auru/unity-configs/issues"
   },
   "homepage": "https://github.com/auru/unity-configs#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "engines": {
     "node": ">=4"
+  },
+  "devDependencies": {
+    "babel-preset-unity": "^0.0.1",
+    "eslint-config-unity": "^0.0.1"
   }
 }
