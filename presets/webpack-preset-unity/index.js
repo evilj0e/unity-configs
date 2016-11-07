@@ -5,21 +5,22 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const CWD = process.cwd();
 
 // flags
 const isDevelopmentMode = (process.env.NODE_ENV === 'development');
 const isProductionMode = !isDevelopmentMode;
 const isDashboardMode = (process.env.DASHBOARD !== 'false');
-const isInNodeModules = path.basename(path.resolve(path.join(__dirname, '..', '..'))) === 'node_modules';
+const isInNodeModules = path.basename(path.resolve(path.join(CWD, '..', '..'))) === 'node_modules';
 const isInDebugMode = process.argv.some(arg => arg.indexOf('--debug-template') > -1);
 
 // paths
-const relativePath = isInDebugMode ? './template' : (isInNodeModules ? '../..' : '.');
-const srcPath = path.resolve(__dirname, relativePath, 'src');
-const nodeModulesPath = path.join(__dirname, 'node_modules');
-const indexHtmlPath = path.resolve(__dirname, relativePath, 'index.html');
-const faviconPath = path.resolve(__dirname, relativePath, 'favicon.png');
-const buildPath = path.join(__dirname, isInNodeModules ? '../..' : '.', 'build');
+const relativePath = isInDebugMode ? CWD + '/template' : (isInNodeModules ? '../..' : '.');
+const srcPath = path.resolve(CWD, relativePath, 'src');
+const nodeModulesPath = path.join(CWD, 'node_modules');
+const indexHtmlPath = path.resolve(CWD, relativePath, 'index.html');
+const faviconPath = path.resolve(CWD, relativePath, 'favicon.png');
+const buildPath = path.join(CWD, isInNodeModules ? '../..' : '.', 'build');
 
 let Dashboard;
 let DashboardPlugin;
@@ -75,7 +76,7 @@ const config = {
                 test: /\.jsx?$/,
                 include: [ srcPath ],
                 loader: 'babel',
-                query: Object.assign(require('./package.json').babel, { cacheDirectory: isDevelopmentMode })
+                query: Object.assign(require(CWD + '/package.json').babel, { cacheDirectory: isDevelopmentMode })
             },
             {
                 test: /\.css$/,

@@ -12,7 +12,7 @@ npm install --save-dev webpack-preset-unity
 
 ### Configure
 
-Require `webpack-preset-unity` from your own `webpack.config.js`. If you want, you can override all of the config fileds.
+Require `webpack-preset-unity` from your own `webpack.config.js`. If you want, you can override all of the config fields.
 
 ```js
 const config = require('webpack-preset-unity');
