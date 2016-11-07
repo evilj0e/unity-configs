@@ -1,15 +1,14 @@
 {
   "name": "babel-preset-unity",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "Default presets of Babel configs used by Unity",
   "files": [
     ".babelrc",
     "README.md"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "ln -f ./.babelrc ../../.babelrc"
-  },
+    "postinstall": "CWD=$(node -p 'process.cwd().split(\"node_modules\")[0]'); ln -f ./.babelrc $CWD/.babelrc"
+   },
   "dependencies": {
     "babel-eslint": "^7.1.0",
     "babel-loader": "^6.2.4",
@@ -32,7 +31,8 @@
   },
   "keywords": [
     "config",
-    "eslint"
+    "eslint",
+    "unity"
   ],
   "author": "Anton Konev (antonykonev@yandex.ru)",
   "license": "MIT",
