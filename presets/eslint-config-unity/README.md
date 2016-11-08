@@ -12,4 +12,9 @@ npm install --save-dev eslint-config-unity
 
 ### Configure
 
-Add `extends: 'unity'` to your local `.eslintrc`
+Add `"extends": "unity"` to your local `.eslintrc`
+```js
+{
+    "extends": "unity"
+}
+```
