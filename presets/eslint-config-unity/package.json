@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-unity",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Default presets of ESLint configs used by Unity",
   "main": "index.js",
   "files": [
