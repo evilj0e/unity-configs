@@ -16,7 +16,7 @@ Default configuration starts your app on http://localhost:9000.
 You can override that configuration by `unity` block in your `package.json` file of your project.
 
 Example:
-```
+```json
 {
   "name": "project51",
   "version": "0.0.1",
