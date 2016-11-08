@@ -1,6 +1,6 @@
 {
   "name": "webpack-preset-unity",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Default presets of webpack configs used by Unity",
   "files": [
     "README.md",
