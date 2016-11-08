@@ -76,7 +76,7 @@ const config = {
                 test: /\.jsx?$/,
                 include: [ srcPath ],
                 loader: 'babel',
-                query: Object.assign(require(CWD + '/package.json').babel, { cacheDirectory: isDevelopmentMode })
+                query: Object.assign(require(CWD + '/package.json').babel || {}, { cacheDirectory: isDevelopmentMode })
             },
             {
                 test: /\.css$/,
