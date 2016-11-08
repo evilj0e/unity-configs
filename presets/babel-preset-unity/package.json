@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-unity",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "Default presets of Babel configs used by Unity",
   "files": [
     ".babelrc",
