@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+
+const path = require('path');
+const roll = {
+    start: require("../lib/start"),
+    build: require("../lib/build"),
+};
+
+function help(status) {
+    console.log("usage: " + path.basename(process.argv[1]) + " [--start|--build][--help]");
+    process.exit(status);
+}
+
+for (let i = 2; i < process.argv.length; ++i) {
+    let arg = process.argv[i];
+
+    switch (arg) {
+        case "--help":
+            return help();
+        case "--build":
+            return roll.build();
+        case "--start":
+        default: 
+            return roll.start();
+    }
+}
+
+return roll.start();
