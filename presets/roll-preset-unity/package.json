@@ -1,0 +1,42 @@
+{
+  "name": "roll-preset-unity",
+  "version": "0.0.2",
+  "description": "Default config presets for start & build scripts used by Unity",
+  "bin": {
+    "roll": "./bin/roll"
+  },
+  "main": "lib/start.js",
+  "files": [
+    "utils",
+    "lib",
+    "bin"
+  ],
+  "dependencies": {
+    "webpack-preset-unity": "^0.0.2",
+    "rimraf": "^2.5.3",
+    "opn": "^4.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/auru/unity-configs.git"
+  },
+  "keywords": [
+    "config",
+    "start",
+    "build",
+    "webpack",
+    "unity"
+  ],
+  "author": "Anton Konev (antonykonev@yandex.ru)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/auru/unity-configs/issues"
+  },
+  "homepage": "https://github.com/auru/unity-configs#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=4"
+  }
+}
