@@ -15,7 +15,7 @@ module.exports = function () {
     const CWD = process.cwd();
     const webpackConfig = require(path.join(CWD, 'webpack.config'));
 
-    rimrafSync(path.join(CWD, webpackConfig.output.publicPath));
+    rimrafSync(path.join(CWD, 'build'));
 
     webpack(webpackConfig).run((err, stats) => {
         if (err) {
