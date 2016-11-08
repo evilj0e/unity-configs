@@ -3,17 +3,17 @@
 // override NODE_ENV
 process.env.NODE_ENV = 'production';
 
+// libs
+const path = require('path');
+const rimrafSync = require('rimraf').sync;
+const webpack = require('webpack');
+
+// configs
+const ERRORCODE = 1;
+const CWD = process.cwd();
+const webpackConfig = require(path.join(CWD, 'webpack.config'));
+
 module.exports = function () {
-
-    // libs
-    const path = require('path');
-    const rimrafSync = require('rimraf').sync;
-    const webpack = require('webpack');
-
-    // configs
-    const ERRORCODE = 1;
-    const CWD = process.cwd();
-    const webpackConfig = require(path.join(CWD, 'webpack.config'));
 
     rimrafSync(path.join(CWD, 'build'));
 

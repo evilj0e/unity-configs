@@ -5,21 +5,21 @@
 // override NODE_ENV
 process.env.NODE_ENV = 'development';
 
+// libs
+const path = require('path');
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const utils = require('../utils');
+
+// configs
+const CWD = process.cwd();
+const webpackConfig = require(path.join(CWD, 'webpack.config'));
+const unityConfig = require(path.join(CWD, 'package.json')).unity || {};
+
+const cert = utils.getCert(unityConfig);
+const compiler = webpack(webpackConfig);
+
 module.exports = function () {
-
-    // libs
-    const path = require('path');
-    const webpack = require('webpack');
-    const WebpackDevServer = require('webpack-dev-server');
-    const utils = require('../utils');
-
-    // configs
-    const CWD = process.cwd();
-    const webpackConfig = require(path.join(CWD, 'webpack.config'));
-    const unityConfig = require(path.join(CWD, 'package.json')).unity || {};
-
-    const cert = utils.getCert(unityConfig);
-    const compiler = webpack(webpackConfig);
 
     new WebpackDevServer(compiler, Object.assign({}, {
         hot: true,
