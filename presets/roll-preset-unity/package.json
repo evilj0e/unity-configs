@@ -1,6 +1,6 @@
 {
   "name": "roll-preset-unity",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Default config presets for start & build scripts used by Unity",
   "bin": {
     "roll": "./bin/roll"
@@ -12,7 +12,7 @@
     "bin"
   ],
   "dependencies": {
-    "webpack-preset-unity": "^0.0.2",
+    "webpack-preset-unity": "^1.0.0",
     "rimraf": "^2.5.3",
     "opn": "^4.0.2"
   },
