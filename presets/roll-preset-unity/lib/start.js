@@ -2,9 +2,6 @@
 /* eslint func-names: 0 */
 /* eslint vars-on-top: 0 */
 
-// override NODE_ENV
-process.env.NODE_ENV = 'development';
-
 // libs
 const path = require('path');
 const webpack = require('webpack');

@@ -1,8 +1,5 @@
 /* eslint no-console: 0 */
 
-// override NODE_ENV
-process.env.NODE_ENV = 'production';
-
 // libs
 const path = require('path');
 const rimrafSync = require('rimraf').sync;

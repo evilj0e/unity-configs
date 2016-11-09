@@ -12,6 +12,21 @@ npm install --save-dev roll-preset-unity
 
 ### Configure
 
+**Important** You should setup `NODE_ENV` before usage that preset.
+```json
+{
+  "name": "project51",
+  "version": "0.0.1",
+  "dependencies": {
+    "roll-preset-unity": "^1.0.0"
+  },
+  "scripts": {
+    "start": "NODE_ENV='development' ./node_modules/.bin/roll",
+    "build": "NODE_ENV='production' ./node_modules/.bin/roll --build"
+  }
+}
+``` 
+
 Default configuration starts your app on http://localhost:9000.
 You can override that configuration by `unity` block in your `package.json` file of your project.
 
