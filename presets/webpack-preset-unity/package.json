@@ -1,6 +1,6 @@
 {
   "name": "webpack-preset-unity",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Default presets of webpack configs used by Unity",
   "files": [
     "README.md",
@@ -8,6 +8,7 @@
   ],
   "main": "index.js",
   "dependencies": {
+    "babel-core": "^6.18.2",
     "lodash-webpack-plugin": "^0.10.2",
     "postcss-cssnext": "^2.8.0",
     "webpack": "^1.13.1",
@@ -23,7 +24,8 @@
     "json-loader": "^0.5.4",
     "file-loader": "^0.9.0",
     "css-loader": "^0.25.0",
-    "baggage-loader": "^0.2.4"
+    "baggage-loader": "^0.2.4",
+    "eslint": "^3.9.1"
   },
   "repository": {
     "type": "git",
