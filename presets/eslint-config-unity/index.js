@@ -48,6 +48,7 @@ module.exports = {
         'space-before-function-paren': [CRITICAL, 'never'],
         'no-unused-vars': [CRITICAL, {vars: 'local', args: 'none'}],
         'func-names': CRITICAL,
+        'object-shorthand': ["error", "properties"],
         'object-curly-spacing': [CRITICAL, 'always'],
         'array-bracket-spacing': [CRITICAL, 'always'],
         'one-var': [CRITICAL, 'never'],
