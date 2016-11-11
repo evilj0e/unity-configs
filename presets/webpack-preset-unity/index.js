@@ -67,7 +67,7 @@ const config = {
             },
             {
                 test: /\/src\/.+\.jsx?$/,
-                loader: 'baggage?style.css',
+                loader: 'baggage?style.css&[file].css',
                 include: srcPath
             }
         ],
