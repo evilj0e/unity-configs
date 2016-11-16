@@ -67,7 +67,7 @@ const config = {
             },
             {
                 test: /\/src\/.+\.jsx?$/,
-                loader: 'baggage?style.css',
+                loader: 'baggage?style.css&[file].css&style.less&[file].less',
                 include: srcPath
             }
         ],
@@ -79,9 +79,9 @@ const config = {
                 query: Object.assign(require(CWD + '/package.json').babel || {}, { cacheDirectory: isDevelopmentMode })
             },
             {
-                test: /\.css$/,
+                test: /\.(css|less)$/,
                 include: [ srcPath ],
-                loader: 'style!css!postcss'
+                loader: 'style!css!less!postcss'
             },
             {
                 test: /\.json$/,
