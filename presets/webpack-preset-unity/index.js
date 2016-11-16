@@ -81,7 +81,7 @@ const config = {
             {
                 test: /\.(css|less)$/,
                 include: [ srcPath ],
-                loader: 'style!css!less!postcss'
+                loader: 'style!css!csso!less!postcss'
             },
             {
                 test: /\.json$/,
