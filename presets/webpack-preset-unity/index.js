@@ -6,21 +6,21 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const CWD = path.join(require.resolve('.'), '../../..');
+const package = require(CWD + '/package.json');
 
 // flags
 const isDevelopmentMode = (process.env.NODE_ENV === 'development');
 const isProductionMode = !isDevelopmentMode;
 const isDashboardMode = (process.env.DASHBOARD !== 'false');
-const isInNodeModules = path.basename(path.resolve(path.join(CWD, '..', '..'))) === 'node_modules';
 const isInDebugMode = process.argv.some(arg => arg.indexOf('--debug-template') > -1);
 
 // paths
-const relativePath = isInDebugMode ? CWD + '/template' : (isInNodeModules ? '../..' : '.');
+const relativePath = isInDebugMode ? CWD + '/template' : '.';
 const srcPath = path.resolve(CWD, relativePath, 'src');
 const nodeModulesPath = path.join(CWD, 'node_modules');
 const indexHtmlPath = path.resolve(CWD, relativePath, 'index.html');
 const faviconPath = path.resolve(CWD, relativePath, 'favicon.png');
-const buildPath = path.join(CWD, isInNodeModules ? '../..' : '.', 'build');
+const buildPath = path.join(CWD, 'build');
 
 let Dashboard;
 let DashboardPlugin;
@@ -34,7 +34,7 @@ if (isDashboardMode) {
 
 const config = {
     bail: isProductionMode,
-    devtool: isDevelopmentMode ? 'eval' : 'source-map',
+    devtool: isDevelopmentMode && 'eval',
     entry: {
         main: [ path.join(srcPath, 'index') ].concat(
             isProductionMode ? [] : [
@@ -47,8 +47,8 @@ const config = {
     output: {
         path: buildPath,
         pathinfo: isDevelopmentMode,
-        filename: isDevelopmentMode ? 'bundle.js' : '[name].[chunkhash].js',
-        chunkFilename: isProductionMode && '[name].[chunkhash].chunk.js',
+        filename: isDevelopmentMode ? 'bundle.js' : '[name].' + package.version + '.js',
+        chunkFilename: isProductionMode && '[name].' + package.version + '.chunk.js',
         publicPath: '/'
     },
     resolve: {
@@ -76,24 +76,34 @@ const config = {
                 test: /\.jsx?$/,
                 include: [ srcPath ],
                 loader: 'babel',
-                query: Object.assign(require(CWD + '/package.json').babel || {}, { cacheDirectory: isDevelopmentMode })
+                query: Object.assign(package.babel || {}, { cacheDirectory: isDevelopmentMode })
             },
             {
                 test: /\.(css|less)$/,
                 include: [ srcPath ],
-                loader: 'style!css!csso!less!postcss'
+                loader: (function () {
+                    const cssLoaders = 'css!csso!less!postcss'; 
+                    
+                    return isDevelopmentMode ? 
+                        'style!' + cssLoaders : 
+                        ExtractTextPlugin.extract('style', cssLoaders);
+                })()
             },
             {
                 test: /\.json$/,
                 loader: 'json'
             },
             {
-                test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)$/,
+                test: /\.(jpg|png|gif|eot|ttf|woff|woff2)$/,
                 loader: 'file'
             },
             {
                 test: /\.(mp4|webm)$/,
                 loader: 'url?limit=10000'
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-url'
             }
         ]
     },
@@ -151,7 +161,7 @@ const config = {
                     screw_ie8: true // eslint-disable-line camelcase
                 }
             }),
-            new ExtractTextPlugin('[name].[contenthash].css')
+            new ExtractTextPlugin('[name].' + package.version + '.css')
         ]
     )
 };
