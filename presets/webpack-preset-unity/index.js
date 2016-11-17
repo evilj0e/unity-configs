@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-const CWD = process.cwd();
+const CWD = path.join(require.resolve('.'), '../../..');
 
 // flags
 const isDevelopmentMode = (process.env.NODE_ENV === 'development');
