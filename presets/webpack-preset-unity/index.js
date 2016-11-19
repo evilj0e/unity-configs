@@ -39,7 +39,7 @@ function createConfig(CWD) {
 
     return {
         bail: isProductionMode,
-        devtool: isDevelopmentMode && 'eval',
+        devtool: isDevelopmentMode ? 'eval' : 'source-map',
         entry: {
             main: [ path.join(srcPath, 'index') ].concat(
                 isProductionMode ? [] : [
@@ -123,7 +123,10 @@ function createConfig(CWD) {
         plugins: [
             dashboard && new DashboardPlugin(dashboard.setData),
             new LodashModuleReplacementPlugin(),
-            new webpack.DefinePlugin({ 'process.env.NODE_ENV': isDevelopmentMode ? '"development"' : '"production"' }),
+            new webpack.DefinePlugin({ 
+                'process.env.NODE_ENV': isDevelopmentMode ? '"development"' : '"production"',
+                IS_DEVELOP: isDevelopmentMode, 
+            }),
             new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
         ].filter(Boolean).concat(
             isDevelopmentMode ? [
