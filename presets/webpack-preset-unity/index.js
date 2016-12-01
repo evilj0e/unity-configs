@@ -99,7 +99,7 @@ function createConfig(CWD) {
                     loader: 'json'
                 },
                 {
-                    test: /\.(jpg|png|gif|eot|ttf|woff|woff2)$/,
+                    test: /\.(jpg|png|gif|eot|ttf|otf|woff|woff2)$/,
                     loader: 'file'
                 },
                 {
@@ -125,7 +125,7 @@ function createConfig(CWD) {
             new LodashModuleReplacementPlugin(),
             new webpack.DefinePlugin({ 
                 'process.env.NODE_ENV': isDevelopmentMode ? '"development"' : '"production"',
-                IS_DEVELOP: isDevelopmentMode, 
+                IS_DEVELOP: isDevelopmentMode
             }),
             new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
         ].filter(Boolean).concat(
