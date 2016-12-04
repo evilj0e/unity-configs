@@ -36,11 +36,11 @@ function getCert(unityConfig) {
 /**
  * Opens google chrome for debugging
  *
- * @param {String} path – path to open
+ * @param {String} pathToOpen – path to open
  * @returns null
  */
-function openBrowser(path) {
-    if (!path) {
+function openBrowser(pathToOpen) {
+    if (!pathToOpen) {
         return;
     }
 
@@ -48,7 +48,7 @@ function openBrowser(path) {
         try {
             execSync('ps cax | grep "Google Chrome"');
             execSync('osascript ' +
-                path.resolve(__dirname, './openChrome.applescript') + ' ' + path);
+                path.resolve(__dirname, './openChrome.applescript') + ' ' + pathToOpen);
             return;
         } catch (err) {
             console.log(err);

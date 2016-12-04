@@ -1,6 +1,6 @@
 {
   "name": "roll-preset-unity",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Default config presets for start & build scripts used by Unity",
   "bin": {
     "roll": "./bin/roll"
