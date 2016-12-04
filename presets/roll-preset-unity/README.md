@@ -1,6 +1,6 @@
 # roll-preset-unity
 
-Default configuration with utils to start & build application.
+Default configuration with utils to start & build family of applications.
 
 ## Usage
 
@@ -12,7 +12,8 @@ npm install --save-dev roll-preset-unity
 
 ### Configure
 
-**Important** You should setup `NODE_ENV` before usage that preset.
+**Important** You should setup `--project` before usage that preset. 
+It will be used by `webpack-preset-unity` to specify which project should be build or run.
 ```json
 {
   "name": "project51",
@@ -21,22 +22,22 @@ npm install --save-dev roll-preset-unity
     "roll-preset-unity": "^1.0.0"
   },
   "scripts": {
-    "start": "NODE_ENV='development' ./node_modules/.bin/roll",
-    "build": "NODE_ENV='production' ./node_modules/.bin/roll --build"
+    "start": ./node_modules/.bin/roll --project 'project1'",
+    "build": ./node_modules/.bin/roll --build --project 'project1' -p"
   }
 }
 ``` 
 
 Default configuration starts your app on http://localhost:9000.
-You can override that configuration by `unity` block in your `package.json` file of your project.
+You can override that configuration by `unity` block in your project's `package.json` (for previous example with project1, it should be placed in package.json of project1 directory).
 
 Example:
 ```json
 {
-  "name": "project51",
+  "name": "project1",
   "version": "0.0.1",
   "dependencies": {
-    "roll-preset-unity": "^1.0.0"
+    "roll-preset-unity": "^3.0.0"
   },
   "unity": {
     "certName": "mysite.ru.pem", 

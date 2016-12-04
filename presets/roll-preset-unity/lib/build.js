@@ -8,11 +8,16 @@ const webpack = require('webpack');
 // configs
 const ERRORCODE = 1;
 const CWD = process.cwd();
+const argv = require('yargs').argv;
 const webpackConfig = require(path.join(CWD, 'webpack.config'));
+
+if (!argv.project) {
+    throw new Error('You should pass --project param with project name to webpack');
+}
 
 module.exports = function () {
 
-    rimrafSync(path.join(CWD, 'build'));
+    rimrafSync(path.join(CWD, 'build', argv.project));
 
     webpack(webpackConfig).run((err, stats) => {
         if (err) {
