@@ -1,15 +1,18 @@
 /* eslint vars-on-top:0 */
 
+const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+const argv = require('yargs').argv;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // flags
 const isDevelopmentMode = (process.env.NODE_ENV === 'development');
 const isProductionMode = !isDevelopmentMode;
-const isDashboardMode = (process.env.DASHBOARD !== 'false');
+const isDashboardMode = (process.env.DASHBOARD !== 'false' && !argv.p);
 
 /**
  * Fabric function thar creates config object
@@ -18,14 +21,15 @@ const isDashboardMode = (process.env.DASHBOARD !== 'false');
  * @returns {Object} – Generated configs
  */
 function createConfig(CWD) {
-    CWD = CWD || path.join(require.resolve('.'), '../../..');
+    CWD = path.join(CWD, argv.project) || path.join(require.resolve('.'), '../../..');
 
     const srcPath = path.resolve(path.join(CWD, 'src'));
-    const nodeModulesPath = path.join(CWD, '/node_modules');
+    const nodeModulesPath = path.join(CWD, '..', 'node_modules');
     const indexHtmlPath = path.resolve(CWD, 'index.html');
     const faviconPath = path.resolve(CWD, 'favicon.png');
-    const buildPath = path.join(CWD, '/build');
+    const buildPath = path.join(CWD, '..', '/build', argv.project);
     const package = require(CWD + '/package.json');
+    const babelrc = fs.readFileSync(path.resolve(path.join(CWD, '..', '.babelrc')));
 
     let Dashboard;
     let DashboardPlugin;
@@ -81,7 +85,9 @@ function createConfig(CWD) {
                     test: /\.jsx?$/,
                     include: [ srcPath ],
                     loader: 'babel',
-                    query: Object.assign(package.babel || {}, { cacheDirectory: isDevelopmentMode })
+                    query: Object.assign(package.babel || {}, Object.assign({ 
+                        cacheDirectory: isDevelopmentMode
+                    }, JSON.parse(babelrc)))
                 },
                 {
                     test: /\.(css|less)$/,
@@ -122,6 +128,10 @@ function createConfig(CWD) {
         },
         plugins: [
             dashboard && new DashboardPlugin(dashboard.setData),
+            new CopyWebpackPlugin([
+                { from: path.join(argv.project, 'public'), to: 'public' },
+                { copyUnmodified: true }
+            ]),
             new LodashModuleReplacementPlugin(),
             new webpack.DefinePlugin({ 
                 'process.env.NODE_ENV': isDevelopmentMode ? '"development"' : '"production"',

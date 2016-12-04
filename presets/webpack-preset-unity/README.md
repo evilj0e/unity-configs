@@ -1,6 +1,14 @@
 # webpack-preset-unity
 
-webpack preset.
+Webpack preset can be used when you have to build different projects by one webpack config.
+Structure of project's directory can be:
+
+```
+/project1
+/project2
+.webpack.config.js // main config
+.babelrc
+``` 
 
 ## Usage
 
@@ -25,3 +33,11 @@ config.module.noParse = /node_modules\/localforage\/dist\/localforage.js/;
 
 module.exports = config;
 ```
+
+### CLI
+
+Webpack should know what project you want to build. You can configure it with special parameter `--project`.
+
+`webpack -p --config ./webpack.config.js --project project1`
+
+It will be builded in `/build/project1`. If your project have a `public` directory it will be copied to build path as is.  
