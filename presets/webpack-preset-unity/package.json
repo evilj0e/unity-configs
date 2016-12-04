@@ -1,6 +1,6 @@
 {
   "name": "webpack-preset-unity",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Default presets of webpack configs used by Unity",
   "files": [
     "README.md",
@@ -11,6 +11,7 @@
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.4",
     "baggage-loader": "^0.2.4",
+    "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.25.0",
     "csso-loader": "^0.2.0",
     "eslint": "^3.9.1",
