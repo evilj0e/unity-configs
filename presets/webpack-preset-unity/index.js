@@ -24,6 +24,7 @@ function createConfig(CWD) {
     CWD = path.join(CWD, argv.project) || path.join(require.resolve('.'), '../../..');
 
     const srcPath = path.resolve(path.join(CWD, 'src'));
+    const corePath = path.resolve(path.join(CWD, '..', 'core'));
     const nodeModulesPath = path.join(CWD, '..', 'node_modules');
     const indexHtmlPath = path.resolve(CWD, 'index.html');
     const faviconPath = path.resolve(CWD, 'favicon.png');
@@ -73,18 +74,18 @@ function createConfig(CWD) {
                 {
                     test: /\.jsx?$/,
                     loader: 'eslint',
-                    include: srcPath
+                    include: [ srcPath, corePath ]
                 },
                 {
                     test: /\/src\/.+\.jsx?$/,
                     loader: 'baggage?style.css&[file].css&style.less&[file].less',
-                    include: srcPath
+                    include: [ srcPath, corePath ]
                 }
             ],
             loaders: [
                 {
                     test: /\.jsx?$/,
-                    include: [ srcPath ],
+                    include: [ srcPath, corePath ],
                     loader: 'babel',
                     query: Object.assign(package.babel || {}, Object.assign({ 
                         cacheDirectory: isDevelopmentMode
@@ -92,7 +93,7 @@ function createConfig(CWD) {
                 },
                 {
                     test: /\.(css|less)$/,
-                    include: [ srcPath ],
+                    include: [ srcPath, corePath ],
                     loader: (function () {
                         const cssLoaders = 'css!csso!less!postcss'; 
                         
