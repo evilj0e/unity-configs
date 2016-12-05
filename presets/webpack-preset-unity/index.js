@@ -61,6 +61,7 @@ function createConfig(CWD) {
             publicPath: '/'
         },
         resolve: {
+            root: path.resolve(path.join(CWD, '..')),
             extensions: [ '', '.js', '.jsx', '.json' ]
         },
         resolveLoader: {
